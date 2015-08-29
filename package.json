@@ -1,0 +1,26 @@
+{
+  "name": "wraith",
+  "version": "0.0.1-alpha",
+  "description": "API mock server, using CSON for mock file format.",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eidolon/wraith.git"
+  },
+  "keywords": [
+    "cson",
+    "mock",
+    "server",
+    "api",
+    "rest"
+  ],
+  "author": "Elliot Wright <elliot@elliotwright.co>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eidolon/wraith/issues"
+  },
+  "homepage": "https://github.com/eidolon/wraith#readme"
+}
