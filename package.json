@@ -2,10 +2,7 @@
   "name": "wraith",
   "version": "0.0.1-alpha",
   "description": "API mock server, using CSON for mock file format.",
-  "main": "src/server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "bin/server",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eidolon/wraith.git"
@@ -22,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/eidolon/wraith/issues"
   },
-  "homepage": "https://github.com/eidolon/wraith#readme"
+  "homepage": "https://github.com/eidolon/wraith#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
 }
