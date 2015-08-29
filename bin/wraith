@@ -16,8 +16,7 @@
 "use strict";
 
 var args = require("../src/args").argv;
-var kernel = require*("../src/kernel");
+var kernel = require("../src/kernel");
 
-kernel
-    .init(args)
-    .listen();
+kernel.init(args);
+kernel.listen();

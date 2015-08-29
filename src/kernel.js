@@ -13,6 +13,46 @@
 
 "use strict";
 
-module.exports = function kernel() {
+var connect = require("connect");
+var glob = require("glob");
+var http = require("http");
+var logger = require("./utils/logger")("kernel");
 
+module.exports = new function() {
+    var files;
+    var inited = false;
+    var port;
+
+    function initFiles(filesArg) {
+        files = glob.sync(filesArg);
+
+        if (!files || !files.length) {
+            logger.error("No files found, exiting.");
+            process.exit();
+        }
+    }
+
+    function initPort(portArg) {
+        port = portArg;
+    }
+
+    this.init = function(args) {
+        initFiles(args.files);
+        initPort(args.port);
+
+        inited = true;
+    };
+
+    this.listen = function() {
+        if (!inited) {
+            logger.error("Wraith has not been initialised, something has gone very wrong.");
+            process.exit();
+        }
+
+        var app = connect();
+
+        http.createServer(app).listen(port);
+
+        logger.success("Listening on port " + port);
+    };
 };

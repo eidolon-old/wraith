@@ -16,10 +16,10 @@
 module.exports = require("yargs")
     .usage("Usage: wraith [OPTIONS]...")
 
-    .option("c", {
-        alias: "config",
+    .option("f", {
+        alias: "files",
         demand: true,
-        describe: "Config to load (e.g. 'foo/**/*.cson')",
+        describe: "Files to load (e.g. 'foo/**/*.cson')",
         type: "string"
     })
 
