@@ -13,29 +13,6 @@
 
 "use strict";
 
-module.exports = require("yargs")
-    .usage("Usage: wraith [OPTIONS]...")
+module.exports = function() {
 
-    .option("f", {
-        alias: "files",
-        demand: true,
-        describe: "Files to load (e.g. 'foo/**/*.cson')",
-        type: "string"
-    })
-
-    .option("p", {
-        alias: "port",
-        default: 3000,
-        describe: "Port to listen on",
-        type: "number"
-    })
-
-    .option("dp", {
-        alias: "dport",
-        default: 3001,
-        describe: "Documentation port",
-        type: "number"
-    })
-
-    .help("help")
-;
+};

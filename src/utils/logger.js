@@ -34,7 +34,7 @@ module.exports = function(prefix) {
             console.log();
         },
 
-        log: function() {
+        log: function(value) {
             console.log(generatePrefix("blue", prefix) + value);
         },
 
