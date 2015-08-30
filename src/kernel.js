@@ -15,9 +15,9 @@
 
 var bodyParser = require("body-parser");
 var chalk = require("chalk");
-var connect = require("connect");
 var cors = require("cors");
 var cson = require("cson");
+var express = require("express");
 var glob = require("glob");
 var http = require("http");
 var logger = require("./utils/logger")("kernel");
@@ -33,11 +33,11 @@ module.exports = new function() {
     var port;
 
     function initApplications() {
-        docsApp = connect();
+        docsApp = express();
         docsApp.use(cors());
         docsApp.use(requestInfo("docs"));
 
-        mocksApp = connect();
+        mocksApp = express();
         mocksApp.use(bodyParser.json());
         mocksApp.use(bodyParser.urlencoded({ extended: false }));
         mocksApp.use(cors());

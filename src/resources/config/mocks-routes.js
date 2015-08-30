@@ -14,7 +14,5 @@
 "use strict";
 
 module.exports = function(app) {
-    // todo: Routes for documentation
-
-
+    app.use(require("../../controllers/mocks-controller"));
 };

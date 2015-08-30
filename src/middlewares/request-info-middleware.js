@@ -28,7 +28,7 @@ module.exports = function(section) {
             var message = "";
 
             message += req.method + " ";
-            message += req.originalUrl + " ";
+            message += req.url + " ";
 
             if (res.statusCode < 400) {
                 message += chalk.green(res.statusCode);

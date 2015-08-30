@@ -13,6 +13,39 @@
 
 "use strict";
 
-module.exports = function() {
+var mockBag = require("../utils/mock-bag");
+var mockFilters = require("../utils/mock-filters");
 
+module.exports = function(request, response) {
+    var filtered;
+    var mocks = mockBag.getMocks();
+
+    filtered = mocks
+        .filter(mockFilters.filterMethod(request))
+        .filter(mockFilters.filterPath(request))
+        .filter(mockFilters.filterParams(request))
+        .filter(mockFilters.filterHeaders(request))
+        .filter(mockFilters.filterBody(request))
+        .shift();
+
+    if (filtered) {
+        var mockResponse = filtered.response;
+
+        mockResponse.headers = mockResponse.headers || {};
+        mockResponse.data = mockResponse.data || {};
+
+        Object
+            .keys(mockResponse.headers)
+            .forEach(function(header) {
+                response.setHeader(header, mockResponse.headers[header]);
+            });
+
+        response
+            .status(mockResponse.status)
+            .send(mockResponse.body);
+    } else {
+        response
+            .status(404)
+            .send(JSON.stringify({ message: "Not found." }));
+    }
 };
