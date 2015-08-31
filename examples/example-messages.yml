@@ -1,0 +1,72 @@
+endpoint: /messages
+name: Message Collection
+description: >
+  Actions that affect the entire message collection in some way.
+
+methods:
+  get:
+    description: >
+      Fetch all messages
+
+    query:
+    - name: recipient
+      description: Message recipient
+      example: SeerUK
+      type: string
+
+    actions:
+    - description: Valid request
+      response:
+        status: 200
+        body: >
+          [ {
+            "id": 12,
+            "recipient": "SeerUK",
+            "message": "Hello world!"
+          } ]
+
+  post:
+    description: >
+      Create a new message
+
+    schema:
+    - name: recipient
+      description: Message recipient
+      example: SeerUK
+      type: string
+      required: true
+    - name: message
+      description: Message content
+      example: Hello world!
+      type: string
+      required: true
+
+    actions:
+    - description: Valid request
+      request:
+        body: >
+          {
+            "recipient": "SeerUK",
+            "message": "Hello world!"
+          }
+      response:
+        status: 201
+        body: >
+          {
+            "id": 12,
+            "recipient": "SeerUK",
+            "message": "Hello world!"
+          }
+
+    - description: Invalid request body
+      request:
+        body:
+          message: "Created"
+      response:
+        body: >
+          {
+            "errors": [ {
+              "code": "bad_request",
+              "message": "Missing required part of body: 'message'"
+            } ]
+          }

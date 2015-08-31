@@ -15,14 +15,15 @@
 
 var mockBag = require("../utils/mock-bag");
 var mockFilters = require("../utils/mock-filters");
+var mockPreprocessor = require("../utils/mock-preprocessor");
 
 module.exports = function(request, response) {
     var filtered;
     var mocks = mockBag.getMocks();
 
-    filtered = mocks
-        .filter(mockFilters.filterMethod(request))
+    filtered = mockPreprocessor.process(mocks)
         .filter(mockFilters.filterPath(request))
+        .filter(mockFilters.filterMethod(request))
         .filter(mockFilters.filterParams(request))
         .filter(mockFilters.filterHeaders(request))
         .filter(mockFilters.filterBody(request))
@@ -33,6 +34,10 @@ module.exports = function(request, response) {
 
         mockResponse.headers = mockResponse.headers || {};
         mockResponse.data = mockResponse.data || {};
+
+        if (!mockResponse.headers["content-type"]) {
+            mockResponse.headers["content-type"] = "application/json";
+        }
 
         Object
             .keys(mockResponse.headers)

@@ -14,12 +14,6 @@
 "use strict";
 
 module.exports = {
-    filterMethod: function(request) {
-        return function(mock) {
-            return mock.request.method === request.method;
-        };
-    },
-
     filterPath: function(request) {
         return function(mock) {
             var path = mock.request.path
@@ -44,6 +38,12 @@ module.exports = {
                 .every(function(item) {
                     return mock.request.params[item] === request.query[item];
                 });
+        };
+    },
+
+    filterMethod: function(request) {
+        return function(mock) {
+            return mock.request.method.toUpperCase() === request.method;
         };
     },
 

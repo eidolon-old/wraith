@@ -1,0 +1,23 @@
+endpoint: /messages/:id
+name: Message Resource
+description: >
+  Actions that affect a single message in some way.
+
+parameters:
+- name: id
+  description: Unique identifier of the message
+  type: integer
+  required: true
+
+methods:
+  get:
+    description: >
+      Fetch a single message by it's ID
+
+    actions:
+    - description: Valid request
+      response:
+        body: >
+          {
+            "message": "Hello world!"
+          }
